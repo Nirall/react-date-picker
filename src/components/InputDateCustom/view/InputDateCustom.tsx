@@ -5,8 +5,6 @@ import InputMask from 'react-input-mask';
 
 import SVG from 'components/SVG';
 
-declare module '*.svg';
-
 import useClickOutside from '../model/useClickOutside';
 import useInputDateCustom from '../model/useInputDateCustom';
 import Selector from './Selector';

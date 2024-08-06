@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import SVGInline from 'react-svg-inline';
 import block from 'bem-cn';
 
