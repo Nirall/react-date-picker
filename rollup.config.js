@@ -7,25 +7,27 @@ import dts from "rollup-plugin-dts";
 import scss from "rollup-plugin-scss";
 import postcss from "rollup-plugin-postcss";
 
+import packageJson from "./package.json" assert { type: "json" };
+
 export default [
   {
     input: "src/index.ts",
     output: [
       {
-        file: "dist/cjs/index.cjs",
+        file: packageJson.main,
         format: "cjs",
-        sourcemap: true,
+        sourcemap: false,
       },
       {
-        file: "dist/esm/index.js",
+        file: packageJson.module,
         format: "esm",
-        sourcemap: true,
+        sourcemap: false,
       },
     ],
     plugins: [
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      typescript({ tsconfig: "./tsconfig.json", sourceMap: false }),
       postcss(),
       // scss({
       //   output: "css/style.css",

@@ -2,8 +2,6 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import block from 'bem-cn';
 
-import SVG from 'components/SVG';
-
 import useClickOutside from '../../model/useClickOutside';
 import arrowSVG from '../img/arrow.svg';
 import { TSelectorProps } from './types';
@@ -56,7 +54,12 @@ const Selector = function <TValue = string>({
     <div className={b({ open: isOpen })} ref={ref}>
       <div className={b('current')} onClick={() => setIsOpen(ps => !ps)}>
         {activeItem.name}
-        <SVG className={b('current-arrow')} svgProps={{ svg: arrowSVG }} />
+        <img
+          className={b('current-arrow')}
+          src={arrowSVG}
+          alt=""
+        />
+        {/* <SVG className={b('current-arrow')} svgProps={{ svg: arrowSVG }} />         */}
       </div>
       <ul className={b('items')} ref={listRef} /* onMouseLeave={() => changeOpen(false)} */>{itemsList}</ul>
     </div>

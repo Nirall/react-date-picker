@@ -3,8 +3,6 @@ import block from 'bem-cn';
 import dayjs from 'dayjs';
 import InputMask from 'react-input-mask';
 
-import SVG from 'components/SVG';
-
 import useClickOutside from '../model/useClickOutside';
 import useInputDateCustom from '../model/useInputDateCustom';
 import Selector from './Selector';
@@ -51,58 +49,96 @@ const InputDateCustom = ({
   return (
     <div className={b({ color, open: values.isOpen })} ref={ref}>
       <div className={b('input')} onClick={() => handlers.setIsOpen(!values.isOpen)}>
-        <SVG className={b('arrow')} svgProps={{ svg: calendarSVG }} />
+        <img className={b('arrow')} src={calendarSVG} alt="" />
+        {/* <SVG className={b('arrow')} svgProps={{ svg: calendarSVG }} /> */}
         {dayjs(value).format(dateFormat)}
-        <SVG className={b('arrow', { type: 'main' })} svgProps={{ svg: arrowSVG }} />
+        <img className={b('arrow', { type: 'main' })} src={arrowSVG} alt="" />
+        {/* <SVG className={b('arrow', { type: 'main' })} svgProps={{ svg: arrowSVG }} /> */}
       </div>
 
       <div className={b('calendar-wrapper', { position: position ?? values.dynamicPosition })} ref={values.calendarRef}>
         <div className={b('calendar')}>
           <div className={b('calendar-header')}>
-            <SVG
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(-1, 'year')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'left' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(-1, 'year')}
-            />
+            /> */}
             <div className={b('selector')}>
               <Selector items={values.years} onChange={handlers.handleYearSelect} />
             </div>
-            <SVG
+            <img
+              className={b('arrow', { type: 'right' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(1, 'year')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'right' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(1, 'year')}
-            />
+            /> */}
           </div>
           <div className={b('calendar-header')}>
-            <SVG
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(-1, 'month')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'left' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(-1, 'month')}
-            />
+            /> */}
             <div className={b('selector')}>
               <Selector items={values.months} onChange={handlers.handleMonthSelect} />
             </div>
-            <SVG
+            <img
+              className={b('arrow', { type: 'right' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(1, 'month')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'right' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(1, 'month')}
-            />
+            /> */}
           </div>
           <div className={b('calendar-table')}>
             {weekItems}
             {daysItems}
           </div>
           {withTime && <div className={b('calendar-footer')}>
-            <SVG
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowX2SVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(-1, 'hour')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'left' })}
               svgProps={{ svg: arrowX2SVG }}
               onClick={() => handlers.handleArrowClick(-1, 'hour')}
+            /> */}
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(-1, 'minute')}
             />
-            <SVG
+            {/* <SVG
               className={b('arrow', { type: 'left' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(-1, 'minute')}
-            />
+            /> */}
             <InputMask
               mask="99:99"
               value={values.bufferValue.format('HH:mm')}
@@ -114,16 +150,28 @@ const InputDateCustom = ({
                 return <input className={b('time')} type="text" inputMode='numeric' pattern='\d*' {...inputProps} />
               }}
             </InputMask>
-            <SVG
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowSVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(1, 'minute')}
+            />
+            {/* <SVG
               className={b('arrow', { type: 'right' })}
               svgProps={{ svg: arrowSVG }}
               onClick={() => handlers.handleArrowClick(1, 'minute')}
+            /> */}
+            <img
+              className={b('arrow', { type: 'left' })}
+              src={arrowX2SVG}
+              alt=""
+              onClick={() => handlers.handleArrowClick(1, 'hour')}
             />
-            <SVG
+            {/* <SVG
               className={b('arrow', { type: 'right' })}
               svgProps={{ svg: arrowX2SVG }}
               onClick={() => handlers.handleArrowClick(1, 'hour')}
-            />
+            /> */}
           </div>}
         </div>
       </div>
