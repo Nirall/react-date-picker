@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import InputMask from 'react-input-mask';
 
 import useClickOutside from '../model/useClickOutside';
-import useInputDateCustom from '../model/useInputDateCustom';
+import useDatePicker from '../model/useDatePicker';
 import Selector from './Selector';
 
 import calendarSVG from './img/calendar.svg';
@@ -12,22 +12,24 @@ import arrowSVG from './img/arrow.svg';
 import arrowX2SVG from './img/arrowx2.svg';
 
 import { IInputDateCustomProps } from './types';
-import './InputDateCustom.scss';
+import './DatePicker.scss';
 
-const b = block('input-date-custom-mobile');
+const b = block('react-date-picker-dayjs');
 
 /**
  * @param { string } dateFormat - according to dayjs
+ * You can pass children as the base element of the date picker
 */
 
-const InputDateCustom = ({
+const DatePicker = ({
   dateFormat = 'DD.MM.YYYY HH:mm',
   value,
   onChange,
   color = 'default',
   position,
+  children,
 }: IInputDateCustomProps) => {
-  const { handlers, values } = useInputDateCustom({ value, onChange, position });
+  const { handlers, values } = useDatePicker({ value, onChange, position });
   const { ref } = useClickOutside(() => handlers.setIsOpen(false));
 
   const weekItems = values.weekNames.map(v =>
@@ -48,11 +50,13 @@ const InputDateCustom = ({
 
   return (
     <div className={b({ color, open: values.isOpen })} ref={ref}>
-      <div className={b('input')} onClick={() => handlers.setIsOpen(!values.isOpen)}>
-        <img className={b('arrow')} src={calendarSVG} alt="" />
-        {dayjs(value).format(dateFormat)}
-        <img className={b('arrow', { type: 'main' })} src={arrowSVG} alt="" />
-      </div>
+      {children
+        ? <div className={b('children')} onClick={() => handlers.setIsOpen(!values.isOpen)}>{children}</div>
+        : <div className={b('input')} onClick={() => handlers.setIsOpen(!values.isOpen)}>
+            <img className={b('arrow')} src={calendarSVG} alt="" />
+            {dayjs(value).format(dateFormat)}
+            <img className={b('arrow', { type: 'main' })} src={arrowSVG} alt="" />
+          </div>}
 
       <div className={b('calendar-wrapper', { position: position ?? values.dynamicPosition })} ref={values.calendarRef}>
         <div className={b('calendar')}>
@@ -137,4 +141,4 @@ const InputDateCustom = ({
   );
 };
 
-export default InputDateCustom;
+export default DatePicker;

@@ -14,7 +14,7 @@ type TUseInputDateCustom = {
   position?: string,
 }
 
-const useInputDateCustom = ({ value, onChange, position, startYear, yearsCount }: TUseInputDateCustom) => {
+const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUseInputDateCustom) => {
   const [bufferValue, setBufferValue] = useState(dayjs(value));
   const [isOpen, setIsOpen] = useState(false);
   const [dynamicPosition, setDynamicPosition] = useState('');
@@ -144,4 +144,4 @@ const useInputDateCustom = ({ value, onChange, position, startYear, yearsCount }
   });
 }
 
-export default useInputDateCustom;
+export default useDatePicker;

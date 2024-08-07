@@ -7,7 +7,7 @@ import arrowSVG from '../img/arrow.svg';
 import { TSelectorProps } from './types';
 import './Selector.scss';
 
-const b = block('input-date-custom-mobile-selector');
+const b = block('react-date-picker-dayjs-selector');
 
 const Selector = function <TValue = string>({
   items,
