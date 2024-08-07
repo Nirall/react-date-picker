@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/nirall"
   },
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A datepicker with automatic calendar position and time entry field.",
   "type": "module",
   "scripts": {
