@@ -4,9 +4,9 @@ import typescript from "@rollup/plugin-typescript";
 import image from "@rollup/plugin-image";
 
 import dts from "rollup-plugin-dts";
-import scss from "rollup-plugin-scss";
 import postcss from "rollup-plugin-postcss";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import terser from '@rollup/plugin-terser';
 
 import packageJson from "./package.json" assert { type: "json" };
 
@@ -31,11 +31,8 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json", sourceMap: false }),
       postcss(),
-      // scss({
-      //   output: "css/style.css",
-      //   failOnError: true,
-      // }),
       image(),
+      terser(),
     ],
   },
   {

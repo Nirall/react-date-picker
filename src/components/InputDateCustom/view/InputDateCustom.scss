@@ -6,8 +6,14 @@
   user-select: none;
   cursor: pointer;
   color: #fff;
+  background: #090909;
   outline: none;
   $r: &;
+  display: flex;
+
+  * {
+    box-sizing: border-box;
+  }
 
   &_open {
     #{$r}__arrow_type_main {
@@ -139,7 +145,7 @@
     text-align: center;
     font-size: 1rem;
     font-weight: 400;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.625rem;
     background: transparent;

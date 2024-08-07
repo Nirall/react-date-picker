@@ -49,7 +49,7 @@ const useInputDateCustom = ({ value, onChange, position, startYear, yearsCount }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
-  
+
   const startDate = bufferValue
     .startOf('month')
     .startOf('week')
@@ -62,7 +62,7 @@ const useInputDateCustom = ({ value, onChange, position, startYear, yearsCount }
   const days = new Array(daysCount + 1).fill(0).map((v, i) => {
     const day = startDate.add(i, 'day');
     const active = day.format('YYYY-MM-DD') === bufferValue.format('YYYY-MM-DD');
-    
+
     return ({
       name: day.get('date'),
       value: day,
