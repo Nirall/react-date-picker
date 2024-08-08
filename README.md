@@ -3,7 +3,7 @@
 A date picker with automatic calendar position and time input field. The package exports a react component <DatePicker />
 
 ## Install
-npm install @nirall/react-date-picker@0.0.7
+npm install @nirall/react-date-picker
 
 ## Usage
 With built-in input design
