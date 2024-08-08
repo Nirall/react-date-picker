@@ -15,25 +15,28 @@ type TUseInputDateCustom = {
 }
 
 const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUseInputDateCustom) => {
-  const [bufferValue, setBufferValue] = useState(dayjs(value));
+  const [bufferValue, setBufferValue] = useState(value ? dayjs(value) : dayjs());
   const [isOpen, setIsOpen] = useState(false);
   const [dynamicPosition, setDynamicPosition] = useState('');
   const calendarRef = useRef<HTMLDivElement>(null);
+  const isFirstRenderRef = useRef(true);
 
   useEffect(() => {
-    if (dayjs(value).toISOString() !== bufferValue.toISOString()) {
+    if (value && (dayjs(value).toISOString() !== bufferValue.toISOString())) {
       setBufferValue(dayjs(value));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpen && !isFirstRenderRef.current) {
       const newDate = bufferValue.toISOString();
       if (newDate !== value?.toISOString()) {
         onChange(new Date(newDate));
       }
     }
+
+    isFirstRenderRef.current = false;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 

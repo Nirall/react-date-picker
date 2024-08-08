@@ -54,7 +54,7 @@ const DatePicker = ({
         ? <div className={b('children')} onClick={() => handlers.setIsOpen(!values.isOpen)}>{children}</div>
         : <div className={b('input')} onClick={() => handlers.setIsOpen(!values.isOpen)}>
             <img className={b('arrow')} src={calendarSVG} alt="" />
-            {dayjs(value).format(dateFormat)}
+            {value ? dayjs(value).format(dateFormat) : dateFormat}
             <img className={b('arrow', { type: 'main' })} src={arrowSVG} alt="" />
           </div>}
 
