@@ -3,13 +3,23 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A date picker with automatic calendar position and time input field.",
   "type": "module",
   "scripts": {
     "rollup": "rollup -c"
   },
   "author": "Nirall",
+  "keywords": [
+    "react",
+    "datepicker",
+    "date-picker",
+    "dayjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nirall/react-date-picker.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
