@@ -1,10 +1,12 @@
 import React from 'react';
 
-export type IInputDateCustomProps = {
-  color?: 'default';
+import { style } from '../model/data';
+
+export type TDatePicker = {
   children?: React.ReactNode;
   dateFormat?: string;
   value: Date | null;
   onChange: (v: Date | null) => void;
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+  style?: Partial<typeof style>;
 }

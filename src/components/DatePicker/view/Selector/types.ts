@@ -1,3 +1,5 @@
+import { style } from "../../model/data";
+
 type TSelectorItem<T> = {
   value: T,
   name: string,
@@ -7,6 +9,7 @@ type TSelectorItem<T> = {
 type TSelectorProps<T> = {
   items: TSelectorItem<T>[],
   onChange: (value: TSelectorItem<T>) => void;
+  style?: Partial<typeof style>;
 }
 
 export type { TSelectorProps };

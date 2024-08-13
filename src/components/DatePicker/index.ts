@@ -1,2 +1,2 @@
-import InputDateCustom from './view';
-export default InputDateCustom;
+import DatePicker from './view';
+export default DatePicker;

@@ -3,9 +3,17 @@
   height: 100%;
   position: relative;
   user-select: none;
-  cursor: pointer;
   outline: none;
   $r: &;
+
+  --text: #000;
+  --selected-text: #FFF;
+  --selected-bg: #5164F9;
+  --button: #4D6ECF;
+  --main-bg: #FFF;
+  --icon: #8C9EB7;
+  --border: #CFDAE9;
+  --radius: 0.625rem;
 
   * {
     box-sizing: border-box;
@@ -26,19 +34,20 @@
     grid-template-columns: 1.875rem auto 1.875rem;
     align-items: center;
     gap: 0.3125rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.625rem;
-    color: #fff;
-    background: #090909;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    background: var(--main-bg);
+    cursor: pointer;
   }
 
   &__calendar {
     margin: 0.3125rem 0;
     width: fit-content;
     padding: 0.3125rem;
-    border-radius: 0.3125rem;
-    background: #090909;
-    color: #fff;
+    border-radius: var(--radius);
+    background: var(--main-bg);
+    color: (--text);
     display: flex;
     flex-direction: column;
     gap: 0.3125rem;
@@ -105,18 +114,25 @@
     text-align: center;
     font-size: 0.875rem;
     font-weight: 400;
-    border-radius: 0.25rem;
+    border-radius: calc(var(--radius) / 2);
     padding: 0.125rem;
-    border: 1px solid transparent;
+    color: var(--text);
+    cursor: pointer;
 
     &_active {
-      border-color: #ffb426;
+      background: var(--selected-bg);
+      color: var(--selected-text);
+    }
+
+    &_grey {
+      opacity: 0.5;
     }
 
     &_type_week {
       font-weight: 600;
-      color: #ffb426;
       text-transform: capitalize;
+      cursor: auto;
+
     }
   }
 
@@ -125,7 +141,10 @@
     width: 1.875rem;
     height: 1.875rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
+    cursor: pointer;
 
     &_type {
       &_left {
@@ -146,10 +165,10 @@
     font-size: 1rem;
     font-weight: 400;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.625rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     background: transparent;
-    color: #fff;
+    color: var(--text);
     outline: none;
   }
 }

@@ -65,11 +65,13 @@ const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUs
   const days = new Array(daysCount + 1).fill(0).map((v, i) => {
     const day = startDate.add(i, 'day');
     const active = day.format('YYYY-MM-DD') === bufferValue.format('YYYY-MM-DD');
+    const isAnotherMonth = day.format('MM') !== bufferValue.format('MM');
 
     return ({
       name: day.get('date'),
       value: day,
       active,
+      isAnotherMonth,
     })
   });
 
