@@ -115,11 +115,11 @@ const useDatePicker = ({ value, onChange, position, startYear = 1900, yearsCount
 
       let newBufferValue = bufferValue;
 
-      if (hours < 24 && hours > 0) {
+      if (hours < 24 && hours >= 0) {
         newBufferValue = newBufferValue.set('hour', hours);
       }
 
-      if (minutes < 60 && minutes > 0) {
+      if (minutes < 60 && minutes >= 0) {
         newBufferValue = newBufferValue.set('minutes', minutes);
       }
 
