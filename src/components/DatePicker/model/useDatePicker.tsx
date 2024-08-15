@@ -15,14 +15,16 @@ type TUseInputDateCustom = {
 }
 
 const useDatePicker = ({ value, onChange, position, startYear = 1900, yearsCount = 200 }: TUseInputDateCustom) => {
-  const [bufferValue, setBufferValue] = useState(value ? dayjs(value) : dayjs());
+  const maxDate = useMemo(() => dayjs(`${startYear + yearsCount}-01-01T00:00:00`), [startYear, yearsCount]);
+  const minDate = useMemo(() => dayjs(`${startYear - 1}-12-31T23:59:59`), [startYear]);
+  const now = dayjs();
+  const defaultValue = now.isBefore(maxDate) && now.isAfter(minDate) ? now : minDate.add(1, 'second');
+
+  const [bufferValue, setBufferValue] = useState(value ? dayjs(value) : defaultValue);
   const [isOpen, setIsOpen] = useState(false);
   const [dynamicPosition, setDynamicPosition] = useState('');
   const calendarRef = useRef<HTMLDivElement>(null);
   const isFirstRenderRef = useRef(true);
-
-  const maxDate = useMemo(() => dayjs(`${startYear + yearsCount}-01-01T00:00:00`), [startYear, yearsCount]);
-  const minDate = useMemo(() => dayjs(`${startYear - 1}-12-31T23:59:59`), [startYear]);
 
   useEffect(() => {
     if (value && (dayjs(value).toISOString() !== bufferValue.toISOString())) {

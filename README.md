@@ -89,7 +89,7 @@ The component can automatically position the calendar box relative to the screen
 
 By default the date format is "DD.MM.YYYY HH:mm", you can change it to any format provided by dayjs. If the date format does not contain time, there will be no time field.
 
-To set range of years there are two properties - "startYear", "yearsCount".
+There are two properties to set the range of years - "startYear", "yearsCount".
 
 ```
 <DatePicker
