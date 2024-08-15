@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 
@@ -14,12 +14,15 @@ type TUseInputDateCustom = {
   position?: string,
 }
 
-const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUseInputDateCustom) => {
+const useDatePicker = ({ value, onChange, position, startYear = 1900, yearsCount = 200 }: TUseInputDateCustom) => {
   const [bufferValue, setBufferValue] = useState(value ? dayjs(value) : dayjs());
   const [isOpen, setIsOpen] = useState(false);
   const [dynamicPosition, setDynamicPosition] = useState('');
   const calendarRef = useRef<HTMLDivElement>(null);
   const isFirstRenderRef = useRef(true);
+
+  const maxDate = useMemo(() => dayjs(`${startYear + yearsCount}-01-01T00:00:00`), [startYear, yearsCount]);
+  const minDate = useMemo(() => dayjs(`${startYear - 1}-12-31T23:59:59`), [startYear]);
 
   useEffect(() => {
     if (value && (dayjs(value).toISOString() !== bufferValue.toISOString())) {
@@ -96,8 +99,10 @@ const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUs
   }
 
   const handleDayClick = (v: typeof days[0]) => {
-    setBufferValue(v.value);
-    setIsOpen(false);
+    if (v.value.isAfter(minDate) && v.value.isBefore(maxDate)) {
+      setBufferValue(v.value);
+      setIsOpen(false);
+    }
   }
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,7 +128,10 @@ const useDatePicker = ({ value, onChange, position, startYear, yearsCount }: TUs
   };
 
   const handleArrowClick = (direction: 1 | -1, type: dayjs.ManipulateType) => {
-    setBufferValue(ps => ps.add(direction, type));
+    const newDate = bufferValue.add(direction, type);
+    if (newDate.isAfter(minDate) && newDate.isBefore(maxDate)) {
+      setBufferValue(newDate);
+    }
   }
 
   return ({

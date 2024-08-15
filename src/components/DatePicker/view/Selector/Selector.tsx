@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 import React, { useMemo, useState, useRef, useEffect } from 'react';
-import block from 'bem-cn';
+
+import { bemNameGenerator } from '../../model/utils';
 
 import useClickOutside from '../../model/useClickOutside';
-import arrowSVG from '../img/arrow.svg';
 import { TSelectorProps } from './types';
 import './Selector.scss';
 
-const b = block('react-date-picker-dayjs-selector');
+const b = bemNameGenerator('react-date-picker-dayjs-selector');
 
 const Selector = function <TValue = string>({
   items,

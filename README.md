@@ -1,6 +1,6 @@
 # React date picker based on dayjs
 
-A date picker with automatic calendar position and time input field. The package exports a react component
+A date picker with automatic calendar position and time input field. The package exports a React component.
 
 ## Install
 npm install @nirall/react-date-picker
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date} />
+      <DatePicker onChange={setDate} value={date} />
     </div>
   );
 }
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date}>
+      <DatePicker onChange={setDate} value={date}>
         // your input
         {date?.toISOString()}
       </DatePicker>
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <DatePicker onChange={v => setDate(v)} value={date} style={style} />
+      <DatePicker onChange={setDate} value={date} style={style} />
     </div>
   );
 }
@@ -84,8 +84,21 @@ function App() {
 The component can automatically position the calendar box relative to the screen, but you can also specify it directly
 
 ```
-<DatePicker onChange={v => setDate(v)} value={date} position="bottom-right" />
+<DatePicker onChange={setDate} value={date} position="bottom-right" />
 ```
 
+By default the date format is "DD.MM.YYYY HH:mm", you can change it to any format provided by dayjs. If the date format does not contain time, there will be no time field.
+
+To set range of years there are two properties - "startYear", "yearsCount".
+
+```
+<DatePicker
+  onChange={setDate}
+  value={date}
+  dateFormat="DD.MM.YYYY"
+  startYear={1990}
+  yearsCount={60}
+/>
+```
 ## git
 [https://github.com/Nirall/react-date-picker](https://github.com/Nirall/react-date-picker)

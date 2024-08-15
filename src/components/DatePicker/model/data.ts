@@ -1,4 +1,4 @@
-const getYearsArr = ({ startYear = 1990, yearsCount = 60 }) =>
+const getYearsArr = ({ startYear = 1900, yearsCount = 200 }) =>
   new Array(yearsCount).fill(startYear).map((v, i) => v + i)
 
 const getCalendarPosition = (item: HTMLDivElement) => {

@@ -9,4 +9,6 @@ export type TDatePicker = {
   onChange: (v: Date | null) => void;
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
   style?: Partial<typeof style>;
+  startYear?: number;
+  yearsCount?: number;
 }

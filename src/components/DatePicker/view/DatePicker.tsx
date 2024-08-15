@@ -1,17 +1,17 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
-import block from 'bem-cn';
 import dayjs from 'dayjs';
 import InputMask from 'react-input-mask';
 
 import useClickOutside from '../model/useClickOutside';
 import useDatePicker from '../model/useDatePicker';
+import { bemNameGenerator } from '../model/utils';
 import Selector from './Selector';
 
 import { TDatePicker } from './types';
 import './DatePicker.scss';
 
-const b = block('react-date-picker-dayjs');
+const b = bemNameGenerator('react-date-picker-dayjs');
 
 /**
  * @param { string } dateFormat - according to dayjs
@@ -25,8 +25,10 @@ const DatePicker = ({
   position,
   children,
   style,
+  startYear,
+  yearsCount,
 }: TDatePicker) => {
-  const { handlers, values } = useDatePicker({ value, onChange, position });
+  const { handlers, values } = useDatePicker({ value, onChange, position, startYear, yearsCount });
   const { ref } = useClickOutside(() => handlers.setIsOpen(false));
 
   const weekItems = values.weekNames.map(v =>

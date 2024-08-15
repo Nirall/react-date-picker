@@ -73,6 +73,9 @@
     background: var(--main-bg);
     color: var(--text);
     display: none;
+    scrollbar-width: thin;
+    scroll-margin-right: 0.5rem;
+    scrollbar-color: var(--selected-bg) transparent;
 
     &::-webkit-scrollbar {
       width: 0.1875rem;
